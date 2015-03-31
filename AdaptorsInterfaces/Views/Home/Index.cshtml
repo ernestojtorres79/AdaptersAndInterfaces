@@ -1,0 +1,40 @@
+﻿@model List<AdaptorsInterfaces.Model.Movie>
+<div>
+    <hr />
+</div>
+<div>
+    <form method="post" role="form">
+        <div class="form-inline" style="text-align:center;">
+            <input class="form-control" type="text" name="Name" placeholder="Movie Name" />
+            <input class="form-control" type="text" name="ImageURL" placeholder="Poster URL" />
+            <select name="Rating" class="form-control">
+                <option value="">Select Rating</option>
+                <option value="1">OneStar</option>
+                <option value="2">TwoStars</option>
+                <option value="3">ThreeStars</option>
+                <option value="4">FourStars</option>
+                <option value="5">FiveStars</option>
+            </select>
+            <button type="submit" class="btn btn-default">Add Movie</button>
+        </div>
+    </form>
+</div>
+<div>
+    <hr />
+</div>
+@foreach(var x in Model)
+{
+    <a href="/Home/DetailsMovie/@x.MovieId">
+        <div style="display: inline-table;">
+            <div class="well" style="width:185px; height:310px;">
+                <img src="@x.ImageUrl" style="display:block; width:150px; height:224px; margin-left:auto; margin-right:auto; padding:0px" />
+                <span>@x.Name</span><br />
+                <span># of Reviews : @x.Reviews.Count() </span><br />
+            </div>
+        </div>
+    </a>
+
+}
+
+
+

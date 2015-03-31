@@ -1,0 +1,46 @@
+﻿@model AdaptorsInterfaces.Model.Movie
+
+<table class="table table-bordered table-responsive" style="background-color:#ffffff;">
+    <tr>
+        <td colspan="3">
+            <img style="display: block; width:300px; height:auto; margin-left:auto; margin-right:auto;" src="@Model.ImageUrl" />
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2">Name</th>
+        <th>Ratings</th>
+    </tr>
+    <tr>
+        <td colspan="2">@Model.Name</td>
+        <td>@Model.Rating</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="text-align:center;">
+            <a href="/Home/EditMovie/@Model.MovieId" class="btn btn-warning">Edit Movie</a>
+            <a href="/Home/DelMovie/@Model.MovieId" class="btn btn-danger">Delete Movie</a>
+        </td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <th>Review</th>
+        <th>Time Posted</th>
+    </tr>
+
+    @foreach (var e in Model.Reviews)
+    {
+        <tr>
+            <td>@e.ReviewUser</td>
+            <td>@e.ReviewBody</td>
+            <td>@e.TimePosted</td>
+        </tr>
+    }
+</table>
+<form role="form" method="post">
+    <div class="form-inline" style="text-align:center;">
+        <input class="form-control" placeholder="Username" id="ReviewUser" name="ReviewUser" />
+        <input class="form-control" placeholder="Review" id="ReviewBody" name="ReviewBody" />
+        <input class="hidden" value="@Model.MovieId" id="MovieId" name="MovieId" />
+        <input class="hidden" value="@DateTime.Now" id="TimePosted" name="TimePosted" />
+        <button class="btn btn-success">Post</button>
+    </div>
+</form>
